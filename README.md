@@ -5,7 +5,7 @@ Praticando um pouco de HTML e CSS, com essa lista de menus interativos.
 
 ## Stack utilizada
 
-**Front-end:** HTML, CSS
+**Front-end:** HTML, CSS,JavaScript
 
 
 ## Screenshots/Video
