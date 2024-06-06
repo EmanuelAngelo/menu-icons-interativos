@@ -1,54 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Icon Menu</title>
-    <link rel="stylesheet" href="css/style.css" />
-  </head>
-  <body>
-    <ul class="menu">
-      <div class="menuToggle"><ion-icon name="add-outline"></ion-icon></div>
-      <li style="--i: 0; --clr: #ff2972">
-        <a href="#"><ion-icon name="home-outline"></ion-icon></a>
-      </li>
-      <li style="--i: 1; --clr: #fee800">
-        <a href="#"><ion-icon name="settings-outline"></ion-icon></a>
-      </li>
-      <li style="--i: 2; --clr: #04fc43">
-        <a href="#"><ion-icon name="mail-outline"></ion-icon></a>
-      </li>
-      <li style="--i: 3; --clr: #fe00f1">
-        <a href="#"><ion-icon name="key-outline"></ion-icon></a>
-      </li>
-      <li style="--i: 4; --clr: #00b0fe">
-        <a href="#"><ion-icon name="camera-outline"></ion-icon></a>
-      </li>
-      <li style="--i: 5; --clr: #fea600">
-        <a href="#"><ion-icon name="game-controller-outline"></ion-icon></a>
-      </li>
-      <li style="--i: 6; --clr: #a529ff">
-        <a href="#"><ion-icon name="person-outline"></ion-icon></a>
-      </li>
-      <li style="--i: 7; --clr: #01bdab">
-        <a href="#"><ion-icon name="videocam-outline"></ion-icon></a>
-      </li>
-    </ul>
-    <script
-      type="module"
-      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
-    ></script>
-    <script
-      nomodule
-      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
-    ></script>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Icon Menu</title>
+  <!-- Link to the external CSS file for styling -->
+  <link rel="stylesheet" href="css/style.css" />
+  <!-- jQuery library for DOM manipulation -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <!-- Link to the external JavaScript file for additional scripts -->
+  <script src="js/scripts.js"></script>
+</head>
+<body>
 
-    <script>
+  <!-- Icon menu container -->
+  <ul class="menu">
+    <!-- Menu toggle button -->
+    <div class="menuToggle"><ion-icon name="add-outline"></ion-icon></div>
+    <!-- Menu items with icons and colors -->
+    <li style="--i: 0; --clr: #ff2972">
+      <a href="#"><ion-icon name="home-outline"></ion-icon></a>
+    </li>
+    <li style="--i: 1; --clr: #fee800">
+      <a href="#"><ion-icon name="settings-outline"></ion-icon></a>
+    </li>
+    <li style="--i: 2; --clr: #04fc43">
+      <a href="#"><ion-icon name="mail-outline"></ion-icon></a>
+    </li>
+    <li style="--i: 3; --clr: #fe00f1">
+      <a href="#"><ion-icon name="key-outline"></ion-icon></a>
+    </li>
+    <li style="--i: 4; --clr: #00b0fe">
+      <a href="#"><ion-icon name="camera-outline"></ion-icon></a>
+    </li>
+    <li style="--i: 5; --clr: #fea600">
+      <a href="#"><ion-icon name="game-controller-outline"></ion-icon></a>
+    </li>
+    <li style="--i: 6; --clr: #a529ff">
+      <a href="#"><ion-icon name="person-outline"></ion-icon></a>
+    </li>
+    <li style="--i: 7; --clr: #01bdab">
+      <a href="#"><ion-icon name="videocam-outline"></ion-icon></a>
+    </li>
+  </ul>
+
+  <!-- Audio elements for sound effects -->
+  <audio id="toggleSound">
+    <source src="audio/close.mp3" type="audio/mpeg">
+    <source src="audio/close.ogg" type="audio/ogg">
+  </audio>
+
+  <audio id="openSound">
+    <source src="audio/open.mp3" type="audio/mpeg">
+    <source src="audio/open.ogg" type="audio/ogg">
+  </audio>
+
+  <audio id="hoverSound">
+    <source src="audio/beep.mp3" type="audio/mpeg">
+    <source src="audio/beep.ogg" type="audio/ogg">
+  </audio>
+
+  <!-- JavaScript code to handle menu toggle and hover sounds -->
+  <script>
+    $(document).ready(function() {
+      var toggleSound = $("#toggleSound")[0];
+      var openSound = $("#openSound")[0];
+      var hoverSound = $("#hoverSound")[0];
+
       let menuToggle = document.querySelector(".menuToggle");
       let menu = document.querySelector(".menu");
+
       menuToggle.onclick = function () {
         menu.classList.toggle("active");
+        toggleSound.currentTime = 0; // Reset the audio to start from the beginning
+        toggleSound.play();
+        if (menu.classList.contains("active")) {
+          openSound.currentTime = 0; // Reset the audio to start from the beginning
+          openSound.play();
+        }
       };
-    </script>
-  </body>
+
+      $("a").mouseenter(function() {
+        hoverSound.currentTime = 0; // Reset the audio to start from the beginning
+        hoverSound.play();
+      });
+    });
+  </script>
+
+  <!-- Ionicons for menu icons -->
+  <script
+    type="module"
+    src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+  ></script>
+  <script
+    nomodule
+    src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+  ></script>
+
+</body>
 </html>
