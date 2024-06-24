@@ -2,6 +2,11 @@
     padding: 0;
     margin: 0;
   }
+
+html {
+    -webkit-tap-highlight-color: transparent;
+}
+
   body {
     display: flex;
     align-items: center;
